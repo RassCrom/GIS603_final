@@ -175,7 +175,7 @@ body {
 
 .pic {
     top: 30px;
-    right: 90px;    
+    right: 90px;
     width: 450px;
     height: 300px;
     display: none;
@@ -184,7 +184,7 @@ body {
 .text {
     background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.75) 100%);
     top: 30px;
-    right: 800px;
+    right: 900px;
     width: 450px;
     height: auto;
     padding: 15px;
@@ -196,6 +196,7 @@ body {
 
 .text span {
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .popups img {

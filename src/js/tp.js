@@ -116,15 +116,6 @@ map.on('click', (event) => {
     })
 });
 
-// const directions = new MapboxDirections({
-//     accessToken: mapboxgl.accessToken,
-//     unit: 'metric',
-//     profile: 'mapbox/driving',
-//     alternatives: 'false',
-//     geometries: 'geojson'
-// });
-
-
 map.on('click', (event) => {
     // If the user clicked on one of your markers, get its information.
     const features = map.queryRenderedFeatures(event.point, {
