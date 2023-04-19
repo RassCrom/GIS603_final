@@ -104,7 +104,7 @@ map.on('click', (event) => {
         .setHTML(
             `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${feature.properties.Name}</h3>
             <p>Description:<br> ${feature.properties['Short description']}</p><br>
-            <button class="place-links" id="route">Route</button>`
+            `
         ).addTo(map);
     let routeFav = document.getElementById('route');
     routeFav.addEventListener('click', ()=> {
@@ -151,7 +151,85 @@ map.on('click', (event) => {
             `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${feature.properties.name}</h3>`
         ).addTo(map);
 });
+map.on('click', (event) => {
+
+    // If the user clicked on one of your markers, get its information.
+    const features = map.queryRenderedFeatures(event.point, {
+        layers: ['beautykz-celr7u'] // replace with your layer name
+    });
+    if (!features.length) {
+        return;
+    }
+    const feature = features[0]
+    // Code from the next step will go here.
+    const popupBeauty = new mapboxgl.Popup({ offset: [0, 0] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(
+            `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${feature.properties.Name}</h3>
+                <p>Location:<br> ${feature.properties['Location']}</p>
+                <p>Description:<br> ${feature.properties['Short_desc']}</p>
+                <a href=${feature.properties['Photo']}><img style="width: 100%" src=${feature.properties['Photo']}></a>`
+        ).addTo(map);
+});
 const btnsCave = document.querySelectorAll('.cave');
+
+// beauty beautykz-1ewo66
+map.on('load', () => {
+    let beautyDivs = []
+    let countbeauty = 0
+    let layer = map.getLayer('beautykz-celr7u');
+    let sourceId = layer.source;
+    const beautyDiv = document.querySelector('.beauty')
+
+    let features = map.querySourceFeatures(sourceId, {
+        'sourceLayer': layer.sourceLayer
+    })
+    // console.log(features[0].properties['Photo'])
+
+    for (let i = 0; i < features.length; i++) {
+        if (i === 20) {
+            break
+        }
+
+        const button = document.createElement('button');
+
+        button.classList = 'place-links'
+        button.textContent = `${features[i].properties.Name}`;
+        button.id = `beauty${i}`;
+        button.value = `${i}`
+
+        beautyDiv.appendChild(button);
+        beautyDivs.push(button);
+    }
+
+    beautyDivs.forEach(e => {
+        e.addEventListener('click', i=> {
+            animateSideBar();
+            map.flyTo({
+                center: [features[i.target.value].geometry.coordinates[0], features[i.target.value].geometry.coordinates[1]],
+                zoom: 18,
+                duration: 6000,
+                bearing: 152.9264,
+                pitch: 73.9188,
+            });
+            const popup = new mapboxgl.Popup({
+                closeButton: true,
+                closeOnClick: true,
+                focusAfterOpen: true,
+                anchor: 'bottom',
+                offset: [7.7, -55] // Set the offset to position the popup just above the marker
+            })
+                .setLngLat(features[i.target.value].geometry.coordinates)
+                .setHTML(
+                    `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${features.properties.Name}</h3>
+                <p>Location:<br> ${feature.properties['Location']}</p>
+                <p>Description:<br> ${feature.properties['Short_desc']}</p>
+                <img src=${feature.properties['Photo']}>`
+                ).addTo(map);
+        })
+    })
+
+})
 
 // caves caves-4wy3gj
 map.on('load', () => {
@@ -259,11 +337,11 @@ map.on('load', function() {
     // });
 });
 
-map.on('mouseenter', ['mapkz-tp', 'peaks-6nxjqk', 'caves-4wy3gj'], function () {
+map.on('mouseenter', ['mapkz-tp', 'peaks-6nxjqk', 'caves-4wy3gj', 'beautykz-celr7u'], function () {
     map.getCanvas().style.cursor = 'pointer';
 });
 
-map.on('mouseleave', ['mapkz-tp', 'peaks-6nxjqk', 'caves-4wy3gj'], function () {
+map.on('mouseleave', ['mapkz-tp', 'peaks-6nxjqk', 'caves-4wy3gj', 'beautykz-celr7u'], function () {
     map.getCanvas().style.cursor = '';
 });
 
