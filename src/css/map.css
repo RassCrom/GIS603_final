@@ -169,40 +169,16 @@ body {
     box-shadow: 10px 10px 10px black, inset 2px 2px 10px white;
     transition: all .3s;
     opacity: 0;
+    display: flex;
+    flex-direction: column;
 }
-
-.welcome-msg {
-    position: absolute;
-    visibility: visible;
-    background-color: rgba(138, 43, 226, 0.8);
-    opacity: 1;
-    width: 44vw;
-    top: 50%;
-    left: 57%;
-    transform: translate(-50%, -50%);
-}
-
-.msg-text {
-    padding: 25px;
-    text-align: center;
-    line-height: 140%;
-    font-size: 18px;
-}
-
-#closer {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    padding: 6px 8px;
-    cursor: pointer;
-}
-
 
 .pic {
     top: 30px;
     right: 90px;    
     width: 450px;
     height: 300px;
+    display: none;
 }
 
 .text {
@@ -210,7 +186,7 @@ body {
     top: 30px;
     right: 800px;
     width: 450px;
-    height: 120px;
+    height: auto;
     padding: 15px;
     line-height: 140%;
     display: flex;
@@ -229,6 +205,19 @@ body {
     border-radius: 18px;
 }
 
+@media only screen and (max-width: 1289px) {
+    .text {
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-30%, -5%, 0);
+        width: 70%;
+    }
+    .text span {
+        font-size: 14px;
+    }
+
+}
+
 .filter-form {
     color: white;
     display: flex;
@@ -237,4 +226,18 @@ body {
     gap: 5px;
     text-align: center;
     align-items: center;
+}
+
+.routes {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    width: 40vw;
+    aspect-ratio: 1/1;
+    background-color: red;
 }

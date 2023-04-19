@@ -39,7 +39,6 @@ const kainPoint = {
 mapboxgl.accessToken = 'pk.eyJ1IjoicmFzc2Nyb20iLCJhIjoiY2wyNzlrcDY2MGk5cDNqcW5wZW9mZW5kciJ9.zdI6zJ4KbGx-V8mq1KoUCg';
 const map = new mapboxgl.Map({
     container: 'map',
-    // Replace YOUR_STYLE_URL with your style URL.
     style: 'mapbox://styles/rasscrom/clakuosq8000o15lg131x1p4b',
     projection: 'globe',
     ...start,
@@ -83,27 +82,6 @@ const animateSideBar = () => {
 
 btnSideBar.addEventListener('click', animateSideBar)
 
-// var contextMenu = document.getElementById('context-menu');
-// map.on('contextmenu', function (e) {
-//     e.preventDefault();
-//     contextMenu.style.left = e.point.x + 'px';
-//     contextMenu.style.top = e.point.y + 'px';
-//     contextMenu.style.display = 'block';
-//     copyCoordinates(e.lngLat);
-// });
-//
-// // Copy coordinates to clipboard and hide context menu
-// function copyCoordinates(lngLat) {
-//     var coordinates = lngLat.lng.toFixed(6) + ', ' + lngLat.lat.toFixed(6);
-//     contextMenu.innerHTML = '<div>Coordinates: ' + coordinates + '</div>';
-//     var copyButton = document.createElement('button');
-//     copyButton.textContent = 'Copy';
-//     copyButton.addEventListener('click', function () {
-//         navigator.clipboard.writeText(coordinates);
-//         contextMenu.style.display = 'none';
-//     });
-//     contextMenu.appendChild(copyButton);
-// }
 let popup = new mapboxgl.Popup({
         closeButton: true,
         closeOnClick: true,
@@ -125,9 +103,26 @@ map.on('click', (event) => {
     popup.setLngLat(feature.geometry.coordinates)
         .setHTML(
             `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${feature.properties.Name}</h3>
-        <p>Description:<br> ${feature.properties['Short description']}</p>`
+            <p>Description:<br> ${feature.properties['Short description']}</p><br>
+            <button class="place-links" id="route">Route</button>`
         ).addTo(map);
+    let routeFav = document.getElementById('route');
+    routeFav.addEventListener('click', ()=> {
+        // const routePopup = document.createElement('div')
+        // routePopup.classList = 'routes';
+        // document.body.appendChild(routePopup)
+
+
+    })
 });
+
+// const directions = new MapboxDirections({
+//     accessToken: mapboxgl.accessToken,
+//     unit: 'metric',
+//     profile: 'mapbox/driving',
+//     alternatives: 'false',
+//     geometries: 'geojson'
+// });
 
 
 map.on('click', (event) => {
@@ -178,8 +173,12 @@ map.on('load', () => {
     let features = map.querySourceFeatures(sourceId, {
         'sourceLayer': 'caves-4wy3gj'
     })
-    // console.log(features)
-    for (i in features) {
+
+    for (let i = 0; i < features.length; i++) {
+        if (i === 6) {
+            break
+        }
+
         const button = document.createElement('button');
 
         button.classList = 'place-links'
@@ -230,31 +229,35 @@ map.on('load', function() {
     let features = map.querySourceFeatures('composite', {
         'sourceLayer': 'peaks-6nxjqk'
     });
-    btnsCave.forEach(i => {
-        i.innerHTML = features[countCave].properties.Name;
-        i.addEventListener('click', e=>{
-            animateSideBar();
-            map.flyTo({
-                center: [features[e.target.value].geometry.coordinates[0], features[0].geometry.coordinates[1]],
-                zoom: 14,
-                duration: 6000,
-                bearing: 152.9264,
-                pitch: 73.9188,
-            });
-            const popup = new mapboxgl.Popup({
-                closeButton: true,
-                closeOnClick: true,
-                focusAfterOpen: true,
-                anchor: 'bottom',
-                offset: [7.7, -55] // Set the offset to position the popup just above the marker
-            })
-                .setLngLat(features[e.target.value].geometry.coordinates)
-                .setHTML(
-                    `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${features[e.target.value].properties.name}</h3>
-        <p>Location:<br> ${features[e.target.value].properties['Location']}</p>`
-                ).addTo(map);
 
-        })
+    btnsCave.forEach(i => {
+        if (countCave < 11) {
+            i.innerHTML = features[countCave].properties.Name;
+            i.addEventListener('click', e=>{
+                animateSideBar();
+                map.flyTo({
+                    center: [features[e.target.value].geometry.coordinates[0], features[0].geometry.coordinates[1]],
+                    zoom: 14,
+                    duration: 6000,
+                    bearing: 152.9264,
+                    pitch: 73.9188,
+                });
+                const popup = new mapboxgl.Popup({
+                    closeButton: true,
+                    closeOnClick: true,
+                    focusAfterOpen: true,
+                    anchor: 'bottom',
+                    offset: [7.7, -55] // Set the offset to position the popup just above the marker
+                })
+                    .setLngLat(features[e.target.value].geometry.coordinates)
+                    .setHTML(
+                        `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${features[e.target.value].properties.name}</h3>
+        <p>Location:<br> ${features[e.target.value].properties['Location']}</p>`
+                    ).addTo(map);
+
+            })
+        }
+
         countCave += 1
     })
 
@@ -264,23 +267,6 @@ map.on('load', function() {
     //     console.log(coordinates);
     // });
 });
-
-
-// var allFeatures;
-// var listedFeatures = [];
-//
-// <!--------3d-buildings-------->
-// map.on('load', function(e) {
-//     allFeatures = map.querySourceFeatures('composite', {
-//         'sourceLayer': 'peaks-6nxjqk'
-//     });
-//     console.log(allFeatures);
-//     console.dir(map.getSource('composite').vectorLayerIds);
-//     // buildLocationList(allFeatures);
-// });
-
-
-
 
 map.on('mouseenter', ['mapkz-tp', 'peaks-6nxjqk', 'caves-4wy3gj'], function () {
     map.getCanvas().style.cursor = 'pointer';
@@ -292,16 +278,6 @@ map.on('mouseleave', ['mapkz-tp', 'peaks-6nxjqk', 'caves-4wy3gj'], function () {
 
 map.addControl(new mapboxgl.NavigationControl());
 map.addControl(new mapboxgl.ScaleControl());
-// map.addControl(new mapboxgl.FullscreenControl());
-
-// document.getElementById('buttons').addEventListener('click', (event) => {
-//     const language = event.target.id.substr('button-'.length);
-//
-//     map.setLayoutProperty('country-label', 'text-field', [
-//         'get',
-//         `name_${language}`
-//     ]);
-// })
 
 new Accordion('.accordion-container', {
     duration: 400,
@@ -445,7 +421,7 @@ function kainFunc(e) {
 map.on('render', kainFunc);
 
 let typedKain = new TypeIt("#spanKain", {
-    speed: 30,
+    speed: speed,
     strings: [txt[4]],
     cursorChar: "|",
     cursor: {
@@ -485,7 +461,7 @@ function wbutFunc(e) {
 map.on('render', wbutFunc);
 
 let typedWbut = new TypeIt("#spanWbut", {
-    speed: 30,
+    speed: speed,
     strings: [txt[3]],
     cursorChar: "|",
     cursor: {
@@ -525,7 +501,7 @@ function ttpFunc(e) {
 map.on('render', ttpFunc);
 
 let typedTtp = new TypeIt("#spanTtp", {
-    speed: 30,
+    speed: speed,
     strings: [txt[2]],
     cursorChar: "|",
     cursor: {
@@ -565,7 +541,7 @@ function batFunc(e) {
 map.on('render', batFunc);
 
 let typedBat = new TypeIt("#spanBat", {
-    speed: 30,
+    speed: speed,
     strings: [txt[1]],
     cursorChar: "|",
     cursor: {
@@ -604,7 +580,7 @@ function bbfFunc(e) {
 map.on('render', bbfFunc);
 
 let typedBbf = new TypeIt("#spanBbf", {
-    speed: 30,
+    speed: speed,
     strings: [txt[0]],
     cursorChar: "|",
     cursor: {
