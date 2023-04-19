@@ -46,11 +46,11 @@ const map = new mapboxgl.Map({
 });
 
 var sideIcon = document.getElementById('side-icon');
-    btnSideBar = document.getElementById('btn');
-    leftBar = document.getElementById('left-sidebar');
-    btnFullscreen = document.getElementById('btn-fullscreen');
-    rndm = document.getElementById('random');
-    home = document.getElementById('btn-home');
+btnSideBar = document.getElementById('btn');
+leftBar = document.getElementById('left-sidebar');
+btnFullscreen = document.getElementById('btn-fullscreen');
+rndm = document.getElementById('random');
+home = document.getElementById('btn-home');
 
 const styleSideBar = window.getComputedStyle(leftBar);
 const matrix = styleSideBar.transform || styleSideBar.webkitTransform || styleSideBar.mozTransform
@@ -117,11 +117,11 @@ map.on('click', (event) => {
 
     // Code from the next step will go here.
     const popup = new mapboxgl.Popup({ offset: [0, 0] })
-    .setLngLat(feature.geometry.coordinates)
-    .setHTML(
-        `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${feature.properties.Name}</h3>
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(
+            `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${feature.properties.Name}</h3>
         <p>Description:<br> ${feature.properties['Short description']}</p>`
-    ).addTo(map);
+        ).addTo(map);
 });
 
 map.on('click', (event) => {
@@ -199,6 +199,8 @@ const flyToHome = () => {
     map.flyTo({
         center: [66, 48],
         zoom: 4,
+        tearing: 0,
+        bearing: 0,
         duration: 5000,
         essential: true
     })
@@ -212,6 +214,7 @@ let isAtStart = true;
 // FLY to
 const bat = document.getElementById('bat')
 bat.addEventListener('click', () => {
+    animateSideBar()
 
     map.flyTo({
         ...batPoint,
@@ -223,6 +226,7 @@ bat.addEventListener('click', () => {
 const bbf = document.getElementById('bbf')
 bbf.addEventListener('click', () => {
 
+    animateSideBar()
     map.flyTo({
         ...bbfPoint,
         duration: 11000,
@@ -232,6 +236,7 @@ bbf.addEventListener('click', () => {
 
 const ttp = document.getElementById('ttp')
 ttp.addEventListener('click', () => {
+    animateSideBar()
 
     map.flyTo({
         ...ttpPoint,
@@ -242,6 +247,7 @@ ttp.addEventListener('click', () => {
 
 const wbut = document.getElementById('wbut')
 wbut.addEventListener('click', () => {
+    animateSideBar()
 
     map.flyTo({
         ...wbutPoint,
@@ -252,7 +258,7 @@ wbut.addEventListener('click', () => {
 
 const kain = document.getElementById('kain')
 kain.addEventListener('click', () => {
-
+    animateSideBar()
     map.flyTo({
         ...kainPoint,
         duration: 11000,
@@ -311,16 +317,6 @@ let typedKain = new TypeIt("#spanKain", {
                 easing: "linear",
                 direction: "alternate",
             },
-            frames: [
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(0deg) scale(1)",
-                },
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(360deg) scale(2.5)",
-                },
-            ],
         },
     },
 });
@@ -361,16 +357,6 @@ let typedWbut = new TypeIt("#spanWbut", {
                 easing: "linear",
                 direction: "alternate",
             },
-            frames: [
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(0deg) scale(1)",
-                },
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(360deg) scale(2.5)",
-                },
-            ],
         },
     },
 });
@@ -411,16 +397,6 @@ let typedTtp = new TypeIt("#spanTtp", {
                 easing: "linear",
                 direction: "alternate",
             },
-            frames: [
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(0deg) scale(1)",
-                },
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(360deg) scale(2.5)",
-                },
-            ],
         },
     },
 });
@@ -461,16 +437,6 @@ let typedBat = new TypeIt("#spanBat", {
                 easing: "linear",
                 direction: "alternate",
             },
-            frames: [
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(0deg) scale(1)",
-                },
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(360deg) scale(2.5)",
-                },
-            ],
         },
     },
 });
@@ -510,22 +476,12 @@ let typedBbf = new TypeIt("#spanBbf", {
                 easing: "linear",
                 direction: "alternate",
             },
-            frames: [
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(0deg) scale(1)",
-                },
-                {
-                    transformOrigin: "0.575em 0.7em",
-                    transform: "rotate(360deg) scale(2.5)",
-                },
-            ],
         },
     },
 });
 
-const closer = document.getElementById('closer')
-closer.addEventListener('click', () => {
-    document.getElementById('welcome-txt').style.opacity = '0';
-    document.getElementById('welcome-txt').style.visibility = 'hidden';
-})
+// const closer = document.getElementById('closer')
+// closer.addEventListener('click', () => {
+//     document.getElementById('welcome-txt').style.opacity = '0';
+//     document.getElementById('welcome-txt').style.visibility = 'hidden';
+// })
