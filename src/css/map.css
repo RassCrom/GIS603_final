@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Josefin+Sans:ital@0;1&family=Readex+Pro:wght@300;400;500&family=Rye&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.wrapper {
+    height: 100vh;
+}
+
+#map { 
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    bottom: 0; 
+    width: 100%;
+}
+
+.sidebar {
+    width: 15%;
+    height: 100%;
+    padding: 10px;
+    background: rgb(48,242,226);
+    background: linear-gradient(10deg, rgba(48,242,226,1) 0%, rgba(2,195,179,1) 100%);
+    color: black;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo-link {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#search-place {
+    margin-top: 15px;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #000;
+    outline: 0;
+    background: transparent;
+    transition: border-color .2s;
+}
+
+#search-place::placeholder {
+    color: transparent;
+}
+
+#search-place:placeholder-shown ~ .form-label {
+    font-size: 0.8rem;
+    cursor: text;
+    top: 16px;
+}
+
+#search-place:focus {
+    padding-bottom: 0px;  
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e,#38ef7d);
+    border-image-slice: 1;
+}
+
+#search-place:focus ~ .form-label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight:700;
+}
+
+.form-label {
+    position: absolute;
+    top: 0px;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: gray;
+}
+
+.mapboxgl-popup .mapboxgl-popup-content {
+    background: #000;
+}
+
+.mapboxgl-popup-close-button {
+    color: #fff;
+    right: 5px !important;
+    padding: 5px !important;
+    transition: color .3s;
+}
+
+.mapboxgl-popup-close-button:hover {
+    color: gray;
+}
+
+.mapboxgl-popup-tip {
+    border-top-color: #000 !important;
+    border-bottom-color: #000 !important;
+}
+
+.sidebar-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-family: 'Rye';
+    text-align: center;
+    color: #11998e;
+}
+
+.button {
+    background-color: rgba(255, 206, 114, 0.423);
+    border: 1px solid burlywood;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+    width: 28px;
+    transition: all .3s;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: rgba(255, 206, 114, 0.9);
+}
+
+#buttons {
+    display: flex;
+    gap: 5px;
+    margin-top: 20px;
+    justify-content: space-evenly;
+}
+
+.place-links {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 40px #11998e inset, 0 0 0 0 #11998e;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+    transition: .15s ease-in-out;
+    margin-bottom: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.place-links:hover {
+    box-shadow: 0 0 10px 0 #11998e inset, 0 0 10px 4px #11998e;
+    color: #11998e;
+}
+
+.popups {
+    visibility: hidden;
+    position: absolute;
+    border-radius: 18px;
+    background-color: rgb(138, 43, 226);
+    box-shadow: 10px 10px 10px black, inset 2px 2px 10px white;
+    transition: all .3s;
+    opacity: 0;
+}
+
+.welcome-msg {
+    position: absolute;
+    visibility: visible;
+    background-color: rgba(138, 43, 226, 0.8);
+    opacity: 1;
+    width: 44vw;
+    top: 50%;
+    left: 57%;
+    transform: translate(-50%, -50%);
+}
+
+.msg-text {
+    padding: 25px;
+    text-align: center;
+    line-height: 140%;
+    font-size: 18px;
+}
+
+#closer {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    padding: 6px 8px;
+    cursor: pointer;
+}
+
+
+.pic {
+    top: 30px;
+    right: 90px;    
+    width: 450px;
+    height: 300px;
+}
+
+.text {
+    background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.75) 100%);
+    top: 30px;
+    right: 800px;
+    width: 450px;
+    height: 120px;
+    padding: 15px;
+    line-height: 140%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text span {
+    text-align: center;
+}
+
+.popups img {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border-radius: 18px;
+}

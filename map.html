@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/map.css">
+    <link rel="stylesheet" href="./src/css/accordion.css">
+    <link rel="stylesheet" href="./src/css/accordionjs.css">
+    <link rel="stylesheet" href="./src/css/normalize.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <style>
+        .context-menu {
+        position: absolute;
+        background-color: rgba(0,0,0,0.8);
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        display: none;
+    }</style>
+</head>
+<body>
+    <div id="left-sidebar" class="left-sidebar">
+        <div class="inner">
+            <h3 class="sidebar-title">Maps</h3>
+            <p class="sidebar-text">Различные карты Акмолинской области</p>
+            <div class="accordion-container">
+                <div class="ac">
+                    <h2 class="ac-header">
+                        <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Города</button>
+                    </h2>
+                    <div class="ac-panel" style="margin-top: 10px;">
+                        <button href="" class="place-links" id="bbf">
+                            Burhan-bulak falls
+                        </button>
+                        <button href="" class="place-links" id="bat">
+                            Bektau-Ata tract
+                        </button>
+                        <button href="" class="place-links" id="ttp">
+                            Tamgaly-tas petroglyphs
+                        </button>
+                        <button href="" class="place-links" id="wbut">
+                            Waterfall "Butakovsky"
+                        </button>
+                        <button href="" class="place-links" id="kain">
+                            Kaindy (lake)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="map">
+        <div id='side-icon' class="side-icon">
+            <button id="btn-home" class="side-icon__link" title="Вернуться домой">
+                <i class="fas fa-home"></i>
+            </button>
+            <button id="btn" class="side-icon__link" title="Просмотреть карты">
+                <i id="side-bar" class="fas fa-arrow-alt-circle-right"></i>
+            </button>
+            <button id="btn-fullscreen" class="side-icon__link" title="Открыть на весь экран">
+                <i id="full" class="fas fa-expand"></i>
+            </button>
+        </div>
+    </div>
+<!--    <div class="wrapper">-->
+<!--        <aside class="sidebar">-->
+<!--            &lt;!&ndash; <form action="" class="form">-->
+<!--                <input name="search-place" id="search-place" type="input" required placeholder="Search"/>-->
+<!--                <label class="form-label" for="search-place">Search</label>-->
+<!--            </form>  &ndash;&gt;-->
+<!--            <h1 class="sidebar-title">Touristic Places</h1>-->
+<!--            <ul class="places">-->
+<!--                <li class="place-items">-->
+<!--                    <button href="" class="place-links" id="bbf">-->
+<!--                        Burhan-bulak falls-->
+<!--                    </button>-->
+<!--                    <button href="" class="place-links" id="bat">-->
+<!--                        Bektau-Ata tract-->
+<!--                    </button>-->
+<!--                    <button href="" class="place-links" id="ttp">-->
+<!--                        Tamgaly-tas petroglyphs-->
+<!--                    </button>-->
+<!--                    <button href="" class="place-links" id="wbut">-->
+<!--                        Waterfall "Butakovsky"-->
+<!--                    </button>-->
+<!--                    <button href="" class="place-links" id="kain">-->
+<!--                        Kaindy (lake)-->
+<!--                    </button>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            <a class="logo-link" href="https://rasscrom.github.io/mapkz/"><img src="./src/img/logo-m.svg" alt="logo" class="logo"></a>-->
+<!--&lt;!&ndash;            <ul id="buttons">&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="button en" id="button-en">en</li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="button ru" id="button-ru">ru</li>&ndash;&gt;-->
+<!--&lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--        </aside>-->
+<!--        <div id="map"></div>-->
+<!--        <div id="context-menu" class="context-menu"></div>-->
+
+<!--        <div class="popups bbf pic" id="picBbf">-->
+<!--            <img src="./src/img/burhanBulak.jpg" alt="burhan bulak">-->
+<!--        </div>-->
+<!--        <div class="popups bbf text" id="txtBbf">-->
+<!--            <span id="spanBbf"></span>-->
+<!--        </div>-->
+
+<!--        <div class="popups bat pic" id="picBat">-->
+<!--            <img src="./src/img/bektauAta.jpg" alt="bektau ata">-->
+<!--        </div>-->
+<!--        <div class="popups bat text" id="txtBat">-->
+<!--            <span id="spanBat"></span>-->
+<!--        </div>-->
+
+<!--        <div class="popups ttp pic" id="picTtp">-->
+<!--            <img src="./src/img/Tamgaly-Tas.JPG" alt="tamgaly-tas">-->
+<!--        </div>-->
+<!--        <div class="popups ttp text" id="txtTtp">-->
+<!--            <span id="spanTtp"></span>-->
+<!--        </div>-->
+
+<!--        <div class="popups wbut pic" id="picWbut">-->
+<!--            <img src="./src/img/wbut.jpg" alt="waterfall">-->
+<!--        </div>-->
+<!--        <div class="popups wbut text" id="txtWbut">-->
+<!--            <span id="spanWbut"></span>-->
+<!--        </div>-->
+
+<!--        <div class="popups kain pic" id="picKain">-->
+<!--            <img src="./src/img/kaindy.jpg" alt="kaindy lake">-->
+<!--        </div>-->
+<!--        <div class="popups kain text" id="txtKain">-->
+<!--            <span id="spanKain"></span>-->
+<!--        </div>-->
+
+<!--&lt;!&ndash;        <div class="popups welcome-msg" id="welcome-txt">&ndash;&gt;-->
+<!--&lt;!&ndash;            <p class="msg-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                Welcome to my project where I'm developing web maps and trying to show my motherland through interactive maps!&ndash;&gt;-->
+<!--&lt;!&ndash;                MereyliQazaqEli is a unique project to show the beauty of Kazakhstan to everybody.&ndash;&gt;-->
+<!--&lt;!&ndash;                Many people even don't know what Kazakhstan is and where it is located.&ndash;&gt;-->
+<!--&lt;!&ndash;                However I will put all my skills and knowdledge to keep improving my website to introduce all aspects of my nation.&ndash;&gt;-->
+<!--&lt;!&ndash;                Starting with some touristic places my end goal is to create as many maps and put as many information that will be interesting to explore.&ndash;&gt;-->
+<!--&lt;!&ndash;                <div id="closer">x</div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </p>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--    </div>-->
+
+    <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/accordion-js@3.3.0/dist/accordion.min.js"></script>
+    <script src="./src/js/tp.js">
+
+
+    </script>
+</body>
+</html>

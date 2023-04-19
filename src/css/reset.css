@@ -1,0 +1,50 @@
+/* Reset */
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+ul,
+ol,
+li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+html,
+body {
+    line-height: 1; 
+    font-size: 14px;
+    scroll-behavior: smooth;
+    /* position: relative; */
+    background-color: rgb(23, 20, 27);
+    font-family: 'Readex Pro';
+    font-weight: 300;
+    color: aliceblue;
+}
+
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: rgb(23, 20, 27);
+    z-index: 2;
+}

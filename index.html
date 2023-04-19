@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mereyli Qazaq Eli</title>
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+/>
+    <link rel="stylesheet" href="./node_modules/locomotive-scroll/dist/locomotive-scroll.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header id="header" class="header">
+            <div data-aos-anchor="#header" data-aos-duration="1000" data-aos="fade-up" id="header" class="header-container">
+                <a href="#" class="header-logo logo"><img src="./src/img/logo-m.svg" alt="logo"></a>
+                <nav class="header-menu menu">
+                    <ul class="menu-list">
+                        <li class="menu-item"><a href="#maps" class="menu-link">Maps</a></li>
+                        <li class="menu-item"><a href="#mission" class="menu-link">Mission</a></li>
+                        <!-- <li class="menu-item"><a href="#about" class="menu-link">About Us</a></li> -->
+                        <li class="menu-item"><a href="#gallery" class="menu-link">Qazaq Eli</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section  class="hero">
+            <div class="layer hero-bg__bottom"></div>
+            <div class="layer hero-container">
+                <h1 id="qq" data-aos-anchor="#header" data-aos-duration="1000" data-aos="fade-up" class="hero_title">Qazaqstan</h1>
+                <!-- <span class="hero-back__text">KAZAKHSTAN</span>
+                <span class="hero-back__text">KAZAKHSTAN</span>
+                <span class="hero-back__text">KAZAKHSTAN</span> -->
+            </div>
+        </section>
+
+        <section class="maps">
+            <div class="maps-container" id="trigger-map">
+                <div data-aos="fade-right" data-aos-anchor="#trigger-map" data-aos-delay="100" data-aos-duration="800">
+                    <h3 id="maps" data-aos="fade-right" data-aos-anchor="#trigger-map" data-aos-delay="100" data-aos-duration="800" class="maps-title">Maps</h3>
+                    <div class="maps-card" id="card-one">
+                        <div class="maps-card__text" id="self" data-aos="fade-right" data-aos-anchor="#self" data-aos-delay="100" data-aos-duration="800">
+                            <h4 class="maps-text__title">TouristicTravel</h4>
+                            <p class="maps-text__description">The most gorgeous places in Kazakhstan to observe in one map. 
+                                Lets plan your holiday trips with our map.
+                            </p>
+                            <a href="./map.html" class="maps-text__btn">Map</a>
+                        </div>
+                        <div class="maps-card__img"><img src="./src/img/map_scrn1.png" alt="map scrn"></div>
+                    </div>
+                    <div class="maps-card" id="self2" data-aos="fade-left" data-aos-anchor="#self2" data-aos-delay="100" data-aos-duration="800">
+                        <div class="maps-card__text" data-aos="fade-left" data-aos-anchor="#self2" data-aos-delay="100" data-aos-duration="800">
+                            <h4 class="maps-text__title" data-aos="fade-left" data-aos-anchor="#self2" data-aos-delay="100" data-aos-duration="800">Historics</h4>
+                            <p class="maps-text__description">Learn history by observing animated maps and interacting with them
+                            </p>
+                            <a href="#" style="cursor: not-allowed; text-align: center" class="maps-text__btn">Not Available</a>
+                        </div>
+                        <div class="maps-card__img cs">COOMING SOON</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission">
+            <div class="mission-container" id="trigger-mission">
+                <div data-aos="fade-right" data-aos-anchor="#trigger-mission" data-aos-delay="100" data-aos-duration="800">
+                    <h3 id="mission" class="mission-title" >Mission</h3>
+                    <div class="mission-block">
+                        <div class="mission-block__highlight"><span>1 </span>Disclosure of sacred values of Kazakhstan in the eyes of foreigners to arouse interest in the history of the country</div>
+                        <div class="mission-block__highlight">
+                            <img src="./src/img/kzrelief.png" alt="KZ pic">
+                        </div>
+                        <div class="mission-block__highlight"><span>2 </span>Set a new course for tourism development with project named MereyliQazaqEli</div>
+                        <div class="mission-block__highlight">
+                            <img src="./src/img/rock.png" alt="KZ pic">
+                        </div>
+                        <div class="mission-block__highlight"><span>3 </span>Integrate interactive maps to unlock the country's tourism potential</div>
+                        <div class="mission-block__highlight">
+                            <img src="./src/img/hiking.png" alt="KZ pic">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="aboutus" id="trigger-gal">
+            <!-- Slider main container -->
+                <div id="gallery" class="swiper" data-aos="fade-up" data-aos-anchor="#trigger-gal" data-aos-delay="100" data-aos-duration="900">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide"><img src="./src/img/kzDish.png" alt=""></div>
+                        <div class="swiper-slide"><img src="./src/img/atalake.jpg" alt=""></div>
+                        <div class="swiper-slide"><img src="./src/img/kzdress.jpg" alt=""></div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                
+                </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-nav">
+                    <img src="./src/img/logo-m.svg" alt="logo" class="footer-logo logo">
+                    <nav class="footer-menu menu">
+                        <ul class="menu-list">
+                            <li class="menu-item"><a href="#maps" class="menu-link">Maps</a></li>
+                            <li class="menu-item"><a href="#mission" class="menu-link">Mission</a></li>
+                            <!-- <li class="menu-item"><a href="#about" class="menu-link">About Us</a></li> -->
+                            <li class="menu-item"><a href="#gallery" class="menu-link">Qazaq Eli</a></li>
+                    </ul>
+                    </nav>
+                    <a href="#" class="footer-contacts">Contact me: rascrom@gmail.com</a>
+                </div>
+                <p class="footer-rights">All rights reserved © k 2022</p>
+            </div>
+        </footer>
+
+        <!-- <div class="decor left"></div>
+        <div class="decor right"></div> -->
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+    <script src="./src/js/app.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="./node_modules/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
