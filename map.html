@@ -17,29 +17,66 @@
 <body>
 <div id="left-sidebar" class="left-sidebar">
     <div class="inner">
-        <h3 class="sidebar-title">Maps</h3>
-        <p class="sidebar-text">Различные карты Акмолинской области</p>
+        <h3 class="sidebar-title">Tourism</h3>
+<!--        <p class="sidebar-text">Tourist</p>-->
+        <form class="filter-form">
+<!--            <label for="all-filter">All</label>-->
+<!--            <input type="checkbox" id="all-filter" name="all"><br><br>-->
+            <label for="fav">Fav places:</label>
+            <input type="checkbox" checked id="fav" name="fav" value="ac-0"><br><br>
+            <label for="peaks">Mountains:</label>
+            <input type="checkbox" checked id="peaks" name="peaks" value="ac-1"><br><br>
+            <label for="test">Caves:</label>
+            <input type="checkbox" checked id="test" name="test" value="ac-2"><br><br>
+        </form>
         <div class="accordion-container">
-            <div class="ac">
+            <div class="ac" id="ac-one">
                 <h2 class="ac-header">
-                    <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Города</button>
+                    <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Favourite places</button>
                 </h2>
-                <div class="ac-panel" style="margin-top: 10px;">
-                    <button href="" class="place-links" id="bbf">
-                        Burhan-bulak falls
-                    </button>
-                    <button href="" class="place-links" id="bat">
-                        Bektau-Ata tract
-                    </button>
-                    <button href="" class="place-links" id="ttp">
-                        Tamgaly-tas petroglyphs
-                    </button>
-                    <button href="" class="place-links" id="wbut">
-                        Waterfall "Butakovsky"
-                    </button>
-                    <button href="" class="place-links" id="kain">
-                        Kaindy (lake)
-                    </button>
+                <div class="ac-panel">
+                    <button href="" class="place-links" id="bbf">Burhan-bulak falls</button>
+                    <button href="" class="place-links" id="bat">Bektau-Ata tract </button>
+                    <button href="" class="place-links" id="ttp">Tamgaly-tas petroglyphs</button>
+                    <button href="" class="place-links" id="wbut">Waterfall "Butakovsky"</button>
+                    <button href="" class="place-links" id="kain">Kaindy (lake)</button>
+                </div>
+            </div>
+            <div class="ac" id="ac-two">
+                <h2 class="ac-header">
+                    <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Mountain peaks</button>
+                </h2>
+                <div class="ac-panel">
+                    <button href="" class="place-links cave" value="0" id="peak0">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="1" id="peak1">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="2" id="peak2">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="3" id="peak3">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="4" id="peak4">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="5" id="peak5">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="6" id="peak6">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="7" id="peak7">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="8" id="peak8">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="9" id="peak9">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="10" id="peak10">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="11" id="peak11">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="12" id="peak12">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="13" id="peak13">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="14" id="peak14">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="15" id="peak15">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="16" id="peak16">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="17" id="peak17">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="18" id="peak18">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="19" id="peak19">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="20" id="peak20">Burhan-bulak falls</button>
+                    <button href="" class="place-links cave" value="21" id="peak21">Burhan-bulak falls</button>
+                </div>
+            </div>
+            <div class="ac" id="ac-three">
+                <h2 class="ac-header">
+                    <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Caves</button>
+                </h2>
+                <div class="ac-panel caves">
+
                 </div>
             </div>
         </div>
@@ -48,17 +85,19 @@
 </div>
 <div id="map">
     <div id='side-icon' class="side-icon">
-        <button id="btn-home" class="side-icon__link" title="Вернуться домой">
+        <button id="btn-home" class="side-icon__link" title="Start veiw">
             <i class="fas fa-home"></i>
         </button>
-        <button id="btn" class="side-icon__link" title="Просмотреть карты">
+        <button id="btn" class="side-icon__link" title="Side menu">
             <i id="side-bar" class="fas fa-arrow-alt-circle-right"></i>
         </button>
-        <button id="btn-fullscreen" class="side-icon__link" title="Открыть на весь экран">
+        <button id="btn-fullscreen" class="side-icon__link" title="Fullscreen">
             <i id="full" class="fas fa-expand"></i>
         </button>
     </div>
 </div>
+
+
 <!--    <div class="wrapper">-->
 <!--        <aside class="sidebar">-->
 <!--            &lt;!&ndash; <form action="" class="form">-->

@@ -104,7 +104,13 @@ btnSideBar.addEventListener('click', animateSideBar)
 //     });
 //     contextMenu.appendChild(copyButton);
 // }
-
+let popup = new mapboxgl.Popup({
+        closeButton: true,
+        closeOnClick: true,
+        focusAfterOpen: true,
+        anchor: 'bottom',
+        offset: [0, -10] // Set the offset to position the popup just above the marker
+})
 map.on('click', (event) => {
     // If the user clicked on one of your markers, get its information.
     const features = map.queryRenderedFeatures(event.point, {
@@ -116,13 +122,13 @@ map.on('click', (event) => {
     const feature = features[0]
 
     // Code from the next step will go here.
-    const popup = new mapboxgl.Popup({ offset: [0, 0] })
-        .setLngLat(feature.geometry.coordinates)
+    popup.setLngLat(feature.geometry.coordinates)
         .setHTML(
             `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${feature.properties.Name}</h3>
         <p>Description:<br> ${feature.properties['Short description']}</p>`
         ).addTo(map);
 });
+
 
 map.on('click', (event) => {
     // If the user clicked on one of your markers, get its information.
@@ -134,20 +140,153 @@ map.on('click', (event) => {
     }
     const feature = features[0]
 
-    // Code from the next step will go here.
-    const popup = new mapboxgl.Popup({ offset: [0, 0] })
-        .setLngLat(feature.geometry.coordinates)
+
+    popup.setLngLat(feature.geometry.coordinates)
         .setHTML(
             `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${feature.properties.Name}</h3>
         <p>Location:<br> ${feature.properties['Location']}</p>`
         ).addTo(map);
 });
+let popupCave;
+map.on('click', (event) => {
 
-map.on('mouseenter', ['mapkz-tp', 'peaks-6nxjqk'], function () {
+    // If the user clicked on one of your markers, get its information.
+    const features = map.queryRenderedFeatures(event.point, {
+        layers: ['caves-4wy3gj'] // replace with your layer name
+    });
+    if (!features.length) {
+        return;
+    }
+    const feature = features[0]
+    // Code from the next step will go here.
+    popupCave = new mapboxgl.Popup({ offset: [0, 0] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(
+            `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${feature.properties.name}</h3>`
+        ).addTo(map);
+});
+const btnsCave = document.querySelectorAll('.cave');
+
+// caves caves-4wy3gj
+map.on('load', () => {
+    let caveDivs = []
+    let countCave = 0
+    let layer = map.getLayer('caves-4wy3gj');
+    let sourceId = layer.source;
+    const caveDiv = document.querySelector('.caves')
+
+    let features = map.querySourceFeatures(sourceId, {
+        'sourceLayer': 'caves-4wy3gj'
+    })
+    // console.log(features)
+    for (i in features) {
+        const button = document.createElement('button');
+
+        button.classList = 'place-links'
+        button.textContent = `${features[i].properties.name}`;
+        button.id = `cave${i}`;
+        button.value = `${i}`
+
+        caveDiv.appendChild(button);
+        caveDivs.push(button);
+    }
+
+    caveDivs.forEach(e => {
+        e.addEventListener('click', i=> {
+            animateSideBar();
+            map.flyTo({
+                center: [features[i.target.value].geometry.coordinates[0], features[i.target.value].geometry.coordinates[1]],
+                zoom: 14,
+                duration: 6000,
+                bearing: 152.9264,
+                pitch: 73.9188,
+            });
+            const popup = new mapboxgl.Popup({
+                closeButton: true,
+                closeOnClick: true,
+                focusAfterOpen: true,
+                anchor: 'bottom',
+                offset: [7.7, -55] // Set the offset to position the popup just above the marker
+            })
+                .setLngLat(features[i.target.value].geometry.coordinates)
+                .setHTML(
+                    `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${features[i.target.value].properties.name}</h3>`
+                ).addTo(map);
+        })
+    })
+
+})
+
+// peaks
+map.on('load', function() {
+    let countCave = 0
+    // Get the layer by its ID
+    let layer = map.getLayer('mapkz-tp');
+
+    // Get the source ID for the layer
+    let sourceId = layer.source;
+
+    // Get the features for the source layer
+    let features = map.querySourceFeatures('composite', {
+        'sourceLayer': 'peaks-6nxjqk'
+    });
+    btnsCave.forEach(i => {
+        i.innerHTML = features[countCave].properties.Name;
+        i.addEventListener('click', e=>{
+            animateSideBar();
+            map.flyTo({
+                center: [features[e.target.value].geometry.coordinates[0], features[0].geometry.coordinates[1]],
+                zoom: 14,
+                duration: 6000,
+                bearing: 152.9264,
+                pitch: 73.9188,
+            });
+            const popup = new mapboxgl.Popup({
+                closeButton: true,
+                closeOnClick: true,
+                focusAfterOpen: true,
+                anchor: 'bottom',
+                offset: [7.7, -55] // Set the offset to position the popup just above the marker
+            })
+                .setLngLat(features[e.target.value].geometry.coordinates)
+                .setHTML(
+                    `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${features[e.target.value].properties.name}</h3>
+        <p>Location:<br> ${features[e.target.value].properties['Location']}</p>`
+                ).addTo(map);
+
+        })
+        countCave += 1
+    })
+
+    // // Loop through each feature and log its coordinates
+    // features.forEach(function(feature) {
+    //     let coordinates = feature.geometry.coordinates;
+    //     console.log(coordinates);
+    // });
+});
+
+
+// var allFeatures;
+// var listedFeatures = [];
+//
+// <!--------3d-buildings-------->
+// map.on('load', function(e) {
+//     allFeatures = map.querySourceFeatures('composite', {
+//         'sourceLayer': 'peaks-6nxjqk'
+//     });
+//     console.log(allFeatures);
+//     console.dir(map.getSource('composite').vectorLayerIds);
+//     // buildLocationList(allFeatures);
+// });
+
+
+
+
+map.on('mouseenter', ['mapkz-tp', 'peaks-6nxjqk', 'caves-4wy3gj'], function () {
     map.getCanvas().style.cursor = 'pointer';
 });
 
-map.on('mouseleave', ['mapkz-tp', 'peaks-6nxjqk'], function () {
+map.on('mouseleave', ['mapkz-tp', 'peaks-6nxjqk', 'caves-4wy3gj'], function () {
     map.getCanvas().style.cursor = '';
 });
 
@@ -485,3 +624,48 @@ let typedBbf = new TypeIt("#spanBbf", {
 //     document.getElementById('welcome-txt').style.opacity = '0';
 //     document.getElementById('welcome-txt').style.visibility = 'hidden';
 // })
+
+// filter
+let allFilter = document.getElementById('all-filter')
+    fav = document.getElementById('fav')
+    peaks = document.getElementById('peaks')
+    test = document.getElementById('test')
+    checkedBoxes = [];
+    acOne = document.getElementById('ac-one')
+    acTwo = document.getElementById('ac-two')
+    acThree = document.getElementById('ac-three')
+
+// Get all the checkboxes
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+// Get all the content divs
+const contentDivs = document.querySelectorAll('.ac');
+
+// Array to store the checked checkbox values
+let checkedValues = ['ac-0', 'ac-1', 'ac-2'];
+
+// Add event listener to each checkbox
+checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', (event) => {
+        // Get the value of the checked checkbox
+        console.log(event.target)
+        const checkedValue = event.target.value;
+
+        // If the checkbox is checked, add its value to the checkedValues array; otherwise, remove it
+        if (checkbox.checked) {
+            checkedValues.push(checkedValue);
+        } else {
+            checkedValues = checkedValues.filter(value => value !== checkedValue);
+        }
+
+        // Loop through all content divs
+        contentDivs.forEach((contentDiv) => {
+            // If the id of the content div includes any of the checked values, show it; otherwise, hide it
+            if (checkedValues.some(value => contentDiv.id.includes(value))) {
+                contentDiv.style.display = 'block';
+            } else if (checkedValues.some(value => !contentDiv.id.includes(value))) {
+                contentDiv.style.display = 'none';
+            }
+         })
+    });
+});

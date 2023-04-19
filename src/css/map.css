@@ -228,3 +228,13 @@ body {
     padding: 5px;
     border-radius: 18px;
 }
+
+.filter-form {
+    color: white;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    gap: 5px;
+    text-align: center;
+    align-items: center;
+}
