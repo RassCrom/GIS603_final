@@ -19,22 +19,34 @@
     <div class="inner">
         <h3 class="sidebar-title">Tourism</h3>
 <!--        <p class="sidebar-text">Tourist</p>-->
-        <form class="filter-form">
-<!--            <label for="all-filter">All</label>-->
-<!--            <input type="checkbox" id="all-filter" name="all"><br><br>-->
-            <label for="fav">Fav places:</label>
-            <input type="checkbox" checked id="fav" name="fav" value="ac-0"><br><br>
-            <label for="peaks">Mountains:</label>
-            <input type="checkbox" checked id="peaks" name="peaks" value="ac-1"><br><br>
-            <label for="test">Caves:</label>
-            <input type="checkbox" checked id="test" name="test" value="ac-2"><br><br>
-        </form>
+<!--        <form class="filter-form">-->
+<!--&lt;!&ndash;            <label for="all-filter">All</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="checkbox" id="all-filter" name="all"><br><br>&ndash;&gt;-->
+<!--            <label for="fav">Fav places:</label>-->
+<!--            <input type="checkbox" checked id="fav" name="fav" value="ac-0"><br><br>-->
+<!--            <label for="peaks">Mountains:</label>-->
+<!--            <input type="checkbox" checked id="peaks" name="peaks" value="ac-1"><br><br>-->
+<!--            <label for="test">Caves:</label>-->
+<!--            <input type="checkbox" checked id="test" name="test" value="ac-2"><br><br>-->
+<!--        </form>-->
         <div class="accordion-container">
-            <div class="ac" id="ac-one">
+<!--            <div class="ac" id="ac-one">-->
+<!--                <h2 class="ac-header">-->
+<!--                    <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Favourite places</button>-->
+<!--                </h2>-->
+<!--                <div class="ac-panel">-->
+<!--                    <button href="" class="place-links" id="bbf">Burhan-bulak falls</button>-->
+<!--                    <button href="" class="place-links" id="bat">Bektau-Ata tract </button>-->
+<!--                    <button href="" class="place-links" id="ttp">Tamgaly-tas petroglyphs</button>-->
+<!--                    <button href="" class="place-links" id="wbut">Waterfall "Butakovsky"</button>-->
+<!--                    <button href="" class="place-links" id="kain">Kaindy (lake)</button>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="ac" id="ac-four">
                 <h2 class="ac-header">
-                    <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Favourite places</button>
+                    <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Top attractions</button>
                 </h2>
-                <div class="ac-panel">
+                <div class="ac-panel beauty">
                     <button href="" class="place-links" id="bbf">Burhan-bulak falls</button>
                     <button href="" class="place-links" id="bat">Bektau-Ata tract </button>
                     <button href="" class="place-links" id="ttp">Tamgaly-tas petroglyphs</button>
@@ -60,7 +72,7 @@
                     <button href="" class="place-links cave" value="10" id="peak10">Burhan-bulak falls</button>
                 </div>
             </div>
-            <div class="ac" id="ac-three">
+            <div class="ac" id="ac-three" style="display: none">
                 <h2 class="ac-header">
                     <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Caves</button>
                 </h2>
@@ -68,14 +80,7 @@
 
                 </div>
             </div>
-            <div class="ac" id="ac-four">
-                <h2 class="ac-header">
-                    <button type="button" class="ac-trigger" style="width: 100%;padding: 10px">Top attractions</button>
-                </h2>
-                <div class="ac-panel beauty">
 
-                </div>
-            </div>
         </div>
 
     </div>
