@@ -207,7 +207,7 @@ map.on('load', () => {
             animateSideBar();
             map.flyTo({
                 center: [features[i.target.value].geometry.coordinates[0], features[i.target.value].geometry.coordinates[1]],
-                zoom: 18,
+                zoom: 19,
                 duration: 6000,
                 bearing: 152.9264,
                 pitch: 73.9188,
@@ -232,58 +232,58 @@ map.on('load', () => {
 })
 
 // caves caves-4wy3gj
-map.on('load', () => {
-    let caveDivs = []
-    let countCave = 0
-    let layer = map.getLayer('caves-4wy3gj');
-    let sourceId = layer.source;
-    const caveDiv = document.querySelector('.caves')
-
-    let features = map.querySourceFeatures(sourceId, {
-        'sourceLayer': 'caves-4wy3gj'
-    })
-
-    for (let i = 0; i < features.length; i++) {
-        if (i === 6) {
-            break
-        }
-
-        const button = document.createElement('button');
-
-        button.classList = 'place-links'
-        button.textContent = `${features[i].properties.name}`;
-        button.id = `cave${i}`;
-        button.value = `${i}`
-
-        caveDiv.appendChild(button);
-        caveDivs.push(button);
-    }
-
-    caveDivs.forEach(e => {
-        e.addEventListener('click', i=> {
-            animateSideBar();
-            map.flyTo({
-                center: [features[i.target.value].geometry.coordinates[0], features[i.target.value].geometry.coordinates[1]],
-                zoom: 14,
-                duration: 6000,
-                bearing: 152.9264,
-                pitch: 73.9188,
-            });
-            const popup = new mapboxgl.Popup({
-                closeButton: true,
-                closeOnClick: true,
-                focusAfterOpen: true,
-                anchor: 'bottom',
-                offset: [7.7, -55] // Set the offset to position the popup just above the marker
-            })
-                .setLngLat(features[i.target.value].geometry.coordinates)
-                .setHTML(
-                    `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${features[i.target.value].properties.name}</h3>`
-                ).addTo(map);
-        })
-    })
-
-})
+// map.on('load', () => {
+//     let caveDivs = []
+//     let countCave = 0
+//     let layer = map.getLayer('caves-4wy3gj');
+//     let sourceId = layer.source;
+//     const caveDiv = document.querySelector('.caves')
+//
+//     let features = map.querySourceFeatures(sourceId, {
+//         'sourceLayer': 'caves-4wy3gj'
+//     })
+//
+//     for (let i = 0; i < features.length; i++) {
+//         if (i === 6) {
+//             break
+//         }
+//
+//         const button = document.createElement('button');
+//
+//         button.classList = 'place-links'
+//         button.textContent = `${features[i].properties.name}`;
+//         button.id = `cave${i}`;
+//         button.value = `${i}`
+//
+//         caveDiv.appendChild(button);
+//         caveDivs.push(button);
+//     }
+//
+//     caveDivs.forEach(e => {
+//         e.addEventListener('click', i=> {
+//             animateSideBar();
+//             map.flyTo({
+//                 center: [features[i.target.value].geometry.coordinates[0], features[i.target.value].geometry.coordinates[1]],
+//                 zoom: 14,
+//                 duration: 6000,
+//                 bearing: 152.9264,
+//                 pitch: 73.9188,
+//             });
+//             const popup = new mapboxgl.Popup({
+//                 closeButton: true,
+//                 closeOnClick: true,
+//                 focusAfterOpen: true,
+//                 anchor: 'bottom',
+//                 offset: [7.7, -55] // Set the offset to position the popup just above the marker
+//             })
+//                 .setLngLat(features[i.target.value].geometry.coordinates)
+//                 .setHTML(
+//                     `Name: <h3 style='font-size:1.2rem;color:green; margin-bottom:5px;'>${features[i.target.value].properties.name}</h3>`
+//                 ).addTo(map);
+//         })
+//     })
+//
+// })
 
 // peaks
 map.on('load', function() {
